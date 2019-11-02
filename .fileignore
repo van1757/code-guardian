@@ -1,0 +1,7 @@
+node_modules*
+.git*
+.fileignore
+.eslint*
+package.json
+package-lock.json
+readme.md

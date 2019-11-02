@@ -1,0 +1,40 @@
+{
+  "name": "code-keeper",
+  "version": "0.1.0",
+  "description": "Simple cli tool to check a code against different kinds of issues",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreiPiatrou/code-keeper.git"
+  },
+  "keywords": [
+    "cli",
+    "ci"
+  ],
+  "author": "19graff91@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreiPiatrou/code-keeper/issues"
+  },
+  "homepage": "https://github.com/AndreiPiatrou/code-keeper#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^1.7.0"
+  },
+  "dependencies": {
+    "fs-readdir-recursive": "^1.1.0",
+    "lodash": "^4.17.15",
+    "require-all": "^3.0.0",
+    "yargs": "^14.2.0"
+  }
+}
