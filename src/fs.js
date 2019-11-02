@@ -5,12 +5,10 @@ const { once } = require('events');
 const readDir = require('fs-readdir-recursive');
 
 function getFiles(dirPath, excludes = []) {
-  const patterns = excludes.map((exclude) => new RegExp(exclude.replace('*', '.*', 'i')));
-
   const relativeFiles = readDir(dirPath, (name, index, dir) => {
     const full = path.join(dir, name);
 
-    return patterns.every((pattern) => !pattern.test(full));
+    return excludes.every((exclude) => !full.includes(exclude));
   });
 
   return relativeFiles.map((relative) => path.join(dirPath, relative));
