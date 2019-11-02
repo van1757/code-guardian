@@ -9,10 +9,10 @@ function outputFileResult(file, results) {
     console.log(FgGreen, file);
 
     results.forEach(({
-      aspect, message, line, lineNumber,
+      checker, message, line, lineNumber,
     }) => {
-      console.log(FgRed, `\t[${aspect.toUpperCase()}]: ${message}`);
-      console.log(Reset, `\t${lineNumber}: ${line}`);
+      console.log(Reset, `\t[${checker.toUpperCase()}]: ${message}`);
+      console.log(FgRed, `\t\t${lineNumber}: ${line}`);
     });
 
     console.log(Reset);

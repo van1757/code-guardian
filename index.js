@@ -2,57 +2,31 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
-const {
-  flow, compact, pick, flatten,
-} = require('lodash');
-const { argv } = require('yargs')
-  .option('path', {
-    alias: 'p',
-    describe: 'Repo path to check',
-    default: './',
-  })
-  .option('excludes', {
-    alias: 'e',
-    describe: 'File path to excludes file',
-    default: '.fileignore',
-  })
-  .option('entropyThreshold', {
-    default: 1,
-  });
 
-const aspects = require('./src/aspects');
-const file = require('./src/file');
+const { flow, compact, flatten } = require('lodash');
+
+const { argv, checkerConfig } = require('./src/arguments');
+const checkLine = require('./src/checkers');
+const fs = require('./src/fs');
 const { output } = require('./src/output');
 
 const FILE_EXCLUDES = flow(
-  file.readLines,
+  fs.readLines,
   compact,
 )(argv.excludes);
 
-const { path } = argv;
-const config = pick(argv, 'entropyThreshold');
-const checkers = Object.keys(aspects).map((aspect) => ({ aspect, check: aspects[aspect] }));
-const checkLines = (lines) => lines.map((line, lineNumber) => checkers.map(({ aspect, check }) => {
-  const message = check(line, {}, config);
-
-  return message ? {
-    aspect,
-    message,
-    line,
-    lineNumber: lineNumber + 1,
-  } : false;
-}));
+const { path: folder } = argv;
 
 (async () => {
-  const files = file.getFiles(path, FILE_EXCLUDES);
+  const files = fs.getFiles(folder, FILE_EXCLUDES);
+
   let hasViolations = false;
 
   for (const sourceFile of files) {
     const sourceFileResults = flow(
-      file.readLines,
-      checkLines,
+      fs.readLines,
+      (lines) => lines.map((l, i) => checkLine(l, { lineNumber: i + 1 }, checkerConfig)),
       flatten,
-      compact,
     )(sourceFile);
 
     output(sourceFile, sourceFileResults);

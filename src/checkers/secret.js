@@ -3,7 +3,8 @@
 const { zip } = require('lodash');
 
 const MIN_LENGTH = 10;
-const LEXEME_REGEXP = /[^\s.()/\\[\]<>=;,]{10,}/;
+const LEXEME_REGEXP = /[^\s.()/\\[\]<>=;,:_]{10,}/;
+const ANY_DIGIT_REGEX = /\d/;
 
 // eslint-disable-next-line no-restricted-globals
 const isDigit = (char) => !isNaN(char);
@@ -42,7 +43,7 @@ function check(line, context, { entropyThreshold }) {
   const matches = LEXEME_REGEXP.exec(line);
   const match = matches ? matches[0] : false;
 
-  if (!match) {
+  if (!match || !ANY_DIGIT_REGEX.test(match)) {
     return false;
   }
 

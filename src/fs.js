@@ -2,17 +2,18 @@ const fs = require('fs');
 const readline = require('readline');
 const path = require('path');
 const { once } = require('events');
-
 const readDir = require('fs-readdir-recursive');
 
 function getFiles(dirPath, excludes = []) {
   const patterns = excludes.map((exclude) => new RegExp(exclude.replace('*', '.*', 'i')));
 
-  return readDir(dirPath, (name, index, dir) => {
+  const relativeFiles = readDir(dirPath, (name, index, dir) => {
     const full = path.join(dir, name);
 
     return patterns.every((pattern) => !pattern.test(full));
   });
+
+  return relativeFiles.map((relative) => path.join(dirPath, relative));
 }
 
 async function readByLine(filePath, callback) {
