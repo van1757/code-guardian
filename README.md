@@ -9,11 +9,15 @@ Simple cli tool to check a code against different kinds of issues
 ### How to install
 
 ```bash
-// TODO
+npm i -g code-guardian
 ```
 
 ### How to start
 
 ```bash
-// TODO
+cd your-repo
+code-guardian
+
+# for more details
+code-guardian --help
 ```
