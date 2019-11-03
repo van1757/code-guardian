@@ -16,5 +16,5 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm t
       - run:
-          name: publish
+          name: release
           command: npm run semantic-release
