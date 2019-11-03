@@ -17,4 +17,4 @@ jobs:
       - run: npm t
       - run:
           name: publish
-          command: npm run semantic-release || true
+          command: npm run semantic-release
