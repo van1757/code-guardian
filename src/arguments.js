@@ -1,3 +1,4 @@
+const path = require('path');
 const { pick } = require('lodash');
 const { argv } = require('yargs')
   .option('path', {
@@ -8,7 +9,7 @@ const { argv } = require('yargs')
   .option('excludes', {
     alias: 'e',
     describe: 'File path to excludes file',
-    default: '.fileignore',
+    default: path.join(__dirname, '../', '.fileignore'),
   })
   .option('entropyThreshold', {
     default: 2,
