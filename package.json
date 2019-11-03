@@ -1,5 +1,5 @@
 {
-  "name": "code-keeper",
+  "name": "code-guardian",
   "version": "0.0.0-development",
   "description": "Simple cli tool to check a code against different kinds of issues",
   "main": "index.js",
