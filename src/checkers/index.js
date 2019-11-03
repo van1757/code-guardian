@@ -8,14 +8,14 @@ const checkers = flow(
 )(checkersHash);
 
 function check(line, context, config) {
-  return checkers.reduce((checkResults, { checker, checkFn }) => {
+  return checkers.reduce((results, { checker, checkFn }) => {
     const message = checkFn(line, context, config);
 
     return message
-      ? [...checkResults, {
+      ? [...results, {
         ...context, checker, message, line,
       }]
-      : checkResults;
+      : results;
   }, []);
 }
 
