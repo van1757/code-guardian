@@ -8,6 +8,9 @@
     "start": "node index.js",
     "semantic-release": "semantic-release"
   },
+  "bin": {
+    "code-guardian": "./index.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/AndreiPiatrou/code-keeper.git"

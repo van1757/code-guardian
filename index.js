@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable guard-for-in */
