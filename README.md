@@ -1,6 +1,6 @@
-[![CircleCI](https://circleci.com/gh/AndreiPiatrou/code-keeper/tree/master.svg?style=svg)](https://circleci.com/gh/AndreiPiatrou/code-keeper/tree/master)
+[![CircleCI](https://circleci.com/gh/AndreiPiatrou/code-guardian/tree/master.svg?style=svg)](https://circleci.com/gh/AndreiPiatrou/code-guardian/tree/master)
 
-# code-keeper
+# code-guardian
 Simple cli tool to check a code against different kinds of issues
 ### Currently supported checks
 
