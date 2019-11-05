@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc node node_modules/.bin/mocha --recursive --exit",
+    "lint": "node_modules/eslint/bin/eslint.js .",
     "semantic-release": "semantic-release"
   },
   "bin": {

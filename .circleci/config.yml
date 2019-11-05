@@ -14,7 +14,12 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm t
+      - run:
+          name: lint
+          command: npm run lint
+      - run:
+          name: test
+          command: npm t
       - run:
           name: release
           command: npm run semantic-release
