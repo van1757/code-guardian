@@ -13,4 +13,4 @@ function check(file, context) {
     : [];
 }
 
-module.exports = check;
+module.exports = () => check;

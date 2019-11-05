@@ -1,8 +1,7 @@
 const { flow, compact } = require('lodash');
 
-const fs = require('../../fs');
 
-function decorate(base, readLinesFn = fs.readLines) {
+function decorate(base, readLinesFn) {
   return function check(file, context, config) {
     return flow(
       readLinesFn,

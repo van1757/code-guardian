@@ -55,4 +55,4 @@ function check(line, context, { entropyThreshold }) {
     : false;
 }
 
-module.exports = perLineDecorator(check);
+module.exports = ({ readLinesFn }) => perLineDecorator(check, readLinesFn);

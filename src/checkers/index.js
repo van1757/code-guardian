@@ -1,13 +1,19 @@
 const { compact } = require('lodash');
 
-const secret = require('./secret');
-const privateKey = require('./private.keys');
+const fs = require('../fs');
+
+const buildSecretChecker = require('./secret');
+const buildPrivateKeyChecker = require('./private.keys');
+
+const DEPENDENCIES = {
+  readLinesFn: fs.readLines,
+};
 
 // TODO: make this array auto-generated
 // maybe by defining decorators inside a target checker
 const checkers = [
-  { checker: 'secret', checkFn: secret },
-  { checker: 'private key', checkFn: privateKey },
+  { checker: 'secret', checkFn: buildSecretChecker(DEPENDENCIES) },
+  { checker: 'private key', checkFn: buildPrivateKeyChecker(DEPENDENCIES) },
 ];
 
 function check(file, context, config) {
