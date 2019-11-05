@@ -2,12 +2,13 @@
 
 const { zip } = require('lodash');
 
+const perLineDecorator = require('./decorators/per.line.checker.decorator');
+
 const MIN_LENGTH = 10;
 const LEXEME_REGEXP = /[^\s.()/\\[\]<>=;,:_]{10,}/;
 const ANY_DIGIT_REGEX = /\d/;
 
-// eslint-disable-next-line no-restricted-globals
-const isDigit = (char) => !isNaN(char);
+const isDigit = (char) => !Number.isNaN(char);
 const isPunctuation = (char) => ['-', '_', '+', '$', '#', '%', '!'].includes(char);
 const isLower = (char) => char === char.toLowerCase() && char !== char.toUpperCase();
 const isUpper = (char) => char === char.toUpperCase() && char !== char.toLowerCase();
@@ -50,8 +51,8 @@ function check(line, context, { entropyThreshold }) {
   const entropy = calculateEntropy(match) * calculateGamma(match);
 
   return entropy >= entropyThreshold
-    ? `The line may contain sensitive data (entropy: ${entropy})`
+    ? { ...context, message: `The line may contain sensitive data (entropy: ${entropy})` }
     : false;
 }
 
-module.exports = check;
+module.exports = perLineDecorator(check);

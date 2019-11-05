@@ -1,22 +1,20 @@
-const { flow, without } = require('lodash');
-const checkersHash = require('require-all')(__dirname);
+const { compact } = require('lodash');
 
-const checkers = flow(
-  Object.keys,
-  (keys) => without(keys, 'index'),
-  (keys) => keys.map((checker) => ({ checker, checkFn: checkersHash[checker] })),
-)(checkersHash);
+const secret = require('./secret');
+const privateKey = require('./private.keys');
 
-function check(line, context, config) {
-  return checkers.reduce((results, { checker, checkFn }) => {
-    const message = checkFn(line, context, config);
+// TODO: make this array auto-generated
+// maybe by defining decorators inside a target checker
+const checkers = [
+  { checker: 'secret', checkFn: secret },
+  { checker: 'private key', checkFn: privateKey },
+];
 
-    return message
-      ? [...results, {
-        ...context, checker, message, line,
-      }]
-      : results;
-  }, []);
+function check(file, context, config) {
+  return compact(checkers.reduce((results, { checker, checkFn }) => [
+    ...results,
+    ...checkFn(file, { ...context, checker }, config),
+  ], []));
 }
 
 module.exports = check;
