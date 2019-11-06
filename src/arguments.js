@@ -15,6 +15,10 @@ const { argv } = require('yargs')
     default: 2,
   });
 
+// TODO: add arguments to FILTER IN only certain checkers
+// example: $ code-guardian # starts all checkers
+// example: $ code-guardian -s # starts only secret checker
+
 module.exports = {
   argv,
   checkerConfig: pick(argv, 'entropyThreshold'),

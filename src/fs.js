@@ -1,9 +1,8 @@
 const fs = require('fs');
-const readline = require('readline');
 const path = require('path');
-const { once } = require('events');
 const readDir = require('fs-readdir-recursive');
 
+// TODO: implement true wildcard for ignore list instead of simple `include` check
 function getFiles(dirPath, excludes = []) {
   const relativeFiles = readDir(dirPath, (name, index, dir) => {
     const full = path.join(dir, name);
@@ -14,33 +13,14 @@ function getFiles(dirPath, excludes = []) {
   return relativeFiles.map((relative) => path.join(dirPath, relative));
 }
 
-async function readByLine(filePath, callback) {
-  const rl = readline.createInterface({
-    input: fs.createReadStream(filePath),
-    crlfDelay: Infinity,
-  });
-
-  let prev;
-  let index = 0;
-
-  rl.on('line', (line) => {
-    const context = { prev, filePath, index };
-
-    callback(line, context);
-
-    index += 1;
-    prev = line;
-  });
-
-  await once(rl, 'close');
-}
-
 function readLines(filePath) {
   return fs.readFileSync(filePath, 'utf8').split('\n');
 }
 
+// TODO: implement a cached.fs.decorator that will cache:
+// 1. the list of files of the last directory
+// 2. the list of lines of the last file
 module.exports = {
   getFiles,
-  readByLine,
   readLines,
 };

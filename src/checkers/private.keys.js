@@ -1,3 +1,4 @@
+// TODO: extend with other extensions
 const PRIVATE_KEY_FILE_EXTENSIONS = ['pem'];
 
 // TODO: add support of configurable keys list
