@@ -1,3 +1,5 @@
+const perFileDecorator = require('./decorators/per.file.checker.decorator');
+
 // TODO: extend with other extensions
 const PRIVATE_KEY_FILE_EXTENSIONS = ['pem'];
 
@@ -14,4 +16,4 @@ function check(file, context) {
     : [];
 }
 
-module.exports = () => check;
+module.exports = (dependencies) => perFileDecorator(check, dependencies);

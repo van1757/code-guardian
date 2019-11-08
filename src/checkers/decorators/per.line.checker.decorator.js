@@ -1,6 +1,6 @@
 const { flow, compact } = require('lodash');
 
-function decorate(base, readLinesFn) {
+function decorate(base, { readLinesFn }) {
   return function check(file, context, config) {
     return flow(
       readLinesFn,

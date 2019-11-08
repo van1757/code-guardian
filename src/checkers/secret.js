@@ -2,6 +2,7 @@
 
 const { zip } = require('lodash');
 
+const perFileDecorator = require('./decorators/per.file.checker.decorator');
 const perLineDecorator = require('./decorators/per.line.checker.decorator');
 
 const MIN_LENGTH = 10;
@@ -55,4 +56,7 @@ function check(line, context, { entropyThreshold }) {
     : false;
 }
 
-module.exports = ({ readLinesFn }) => perLineDecorator(check, readLinesFn);
+module.exports = (dependencies) => perFileDecorator(
+  perLineDecorator(check, dependencies),
+  dependencies,
+);
