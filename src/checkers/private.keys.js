@@ -1,4 +1,4 @@
-const perFileDecorator = require('./decorators/per.file.checker.decorator');
+const perFileDecorator = require('../decorators/checkers/per.file.checker.decorator');
 
 // TODO: extend with other extensions
 const PRIVATE_KEY_FILE_EXTENSIONS = ['pem'];
