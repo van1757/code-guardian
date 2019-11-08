@@ -43,6 +43,7 @@
     "fs-readdir-recursive": "^1.1.0",
     "lodash": "^4.17.15",
     "require-all": "^3.0.0",
+    "requireindex": "^1.2.0",
     "yargs": "^14.2.0"
   },
   "nyc": {
