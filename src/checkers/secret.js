@@ -2,8 +2,8 @@
 
 const { zip } = require('lodash');
 
-const perFileDecorator = require('../decorators/checkers/per.file.checker.decorator');
-const perLineDecorator = require('../decorators/checkers/per.line.checker.decorator');
+const perFileDecorator = require('./decorators/per.file.checker.decorator');
+const perLineDecorator = require('./decorators/per.line.checker.decorator');
 
 const MIN_LENGTH = 10;
 const LEXEME_REGEXP = /[^\s.()/\\[\]<>=;,:_]{10,}/;

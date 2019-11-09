@@ -1,5 +1,5 @@
 const { compact, pick, reduce } = require('lodash');
-const checkers = require('requireindex')(__dirname);
+const checkers = require('../enums/checkers');
 
 function filterCheckers(allCheckers, selectedCheckers) {
   return selectedCheckers.length

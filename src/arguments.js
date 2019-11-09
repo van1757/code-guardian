@@ -1,5 +1,5 @@
 const path = require('path');
-const checkers = require('requireindex')(path.join(__dirname, 'checkers'));
+const checkers = require('./enums/checkers');
 const { pick } = require('lodash');
 const { argv } = require('yargs')
   .option('path', {
