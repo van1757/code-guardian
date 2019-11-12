@@ -25,7 +25,7 @@ const checkFn = buildCheckFn({
 });
 
 (async () => {
-  const result = checkFn(repo, {}, selectedCheckers, checkerConfig);
+  const result = checkFn(repo, selectedCheckers, {}, checkerConfig);
 
   process.exit(!result ? 1 : 0);
 })();

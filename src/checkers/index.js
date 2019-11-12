@@ -13,7 +13,7 @@ function filterCheckers(allCheckers, selectedCheckers) {
 }
 
 function buildCheckFn(dependencies) {
-  return function check(repo, context, selectedCheckers, config) {
+  return function check(repo, selectedCheckers, context, config) {
     const filteredCheckers = filterCheckers(checkers, selectedCheckers);
 
     return reduce(filteredCheckers, (results, checkFn, checker) => compact([
