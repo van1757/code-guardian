@@ -1,5 +1,10 @@
 const { compact, pick, reduce } = require('lodash');
-const checkers = require('../enums/checkers');
+
+const checkers = require('require-all')({
+  dirname: __dirname,
+  excludeDirs: 'decorators',
+  filter: /^((?!index).*)\.js$/,
+});
 
 function filterCheckers(allCheckers, selectedCheckers) {
   return selectedCheckers.length
@@ -7,7 +12,7 @@ function filterCheckers(allCheckers, selectedCheckers) {
     : allCheckers;
 }
 
-module.exports = (dependencies) => {
+function buildCheckFn(dependencies) {
   return function check(repo, context, selectedCheckers, config) {
     const filteredCheckers = filterCheckers(checkers, selectedCheckers);
 
@@ -16,4 +21,9 @@ module.exports = (dependencies) => {
       ...checkFn(dependencies)(repo, { ...context, checker }, config),
     ]), []);
   };
+}
+
+module.exports = {
+  checkers: Object.keys(checkers),
+  buildCheckFn,
 };

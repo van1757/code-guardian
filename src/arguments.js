@@ -1,5 +1,5 @@
 const path = require('path');
-const checkers = require('./enums/checkers');
+const { checkers } = require('./checkers');
 const { pick } = require('lodash');
 const { argv } = require('yargs')
   .option('path', {
@@ -17,7 +17,7 @@ const { argv } = require('yargs')
   })
   .option('checkers', {
     array: true,
-    choices: Object.keys(checkers),
+    choices: checkers,
     describe: 'Specify checkers to be used',
     default: [],
   });
