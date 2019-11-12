@@ -78,7 +78,7 @@ describe('index.js', () => {
         selectedCheckers = ['testChecker'];
       });
 
-      it('calls checks for all checkers', () => {
+      it('calls checks for selected checkers', () => {
         const checkFn = buildCheckFn(dependencies);
         const checkResults = checkFn(repo, selectedCheckers, checkerContext, config);
 
